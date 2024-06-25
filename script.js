@@ -14,7 +14,7 @@ const transporter = nodemailer.createTransport({
   });
 
 // URL of the image to fetch
-const imageUrl = 'http://192.168.100.59/cam-hi.jpg';
+const imageUrl = 'http://192.168.100.59/cam-lo.jpg';
 // Path to save the image locally
 const imagePath = path.join(__dirname, 'images', 'cam-hi.jpg'); // Assuming 'images' folder exists
 
@@ -62,7 +62,7 @@ async function performDetectionAndEmail() {
         // Process detections
         const detections = detectionResponse.data.predictions.filter(pred => pred.class === 'whitefly');
         const totalCount = detections.length;
-        const accuracy = Math.round(totalCount > 0 ? (detections.reduce((acc, pred) => acc + pred.confidence, 0) / totalCount) * 100 : 0);
+        const accuracy = Math.round(totalCount > 1 ? (detections.reduce((acc, pred) => acc + pred.confidence, 0) / totalCount) * 100 : 0);
 
         console.log(`Total Count of White Flies: ${totalCount}`);
         console.log(`Accuracy: ${accuracy}%`);
